@@ -1,20 +1,11 @@
-using System.Collections;
 using System.Net.Http;
-using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using AutoMapper;
 using DTO;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using Model;
 using System.Linq;
-using System.Text.Json;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
