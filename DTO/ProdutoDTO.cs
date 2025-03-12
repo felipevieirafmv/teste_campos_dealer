@@ -2,6 +2,6 @@ namespace DTO;
 
 public class ProdutoDTO
 {
-    public string DscProduto { get; set; }
-    public float VlrUnitario { get; set; }
+    public string dscProduto { get; set; }
+    public float vlrUnitario { get; set; }
 }

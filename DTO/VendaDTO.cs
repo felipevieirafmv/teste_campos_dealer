@@ -4,10 +4,10 @@ namespace DTO;
 
 public class VendaDTO
 {
-    public int IdCliente { get; set; }
-    public int IdProduto { get; set; }
-    public int QtdVenda { get; set; }
-    public float VlrUnitarioVenda { get; set; }
-    public DateTime DthVenda { get; set; }
-    public float VlrTotalVenda { get; set; }
+    public int idCliente { get; set; }
+    public int idProduto { get; set; }
+    public int qtdVenda { get; set; }
+    public float vlrUnitarioVenda { get; set; }
+    public DateTime dthVenda { get; set; }
+    public float vlrTotalVenda { get; set; }
 }

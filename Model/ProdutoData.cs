@@ -8,6 +8,6 @@ public class ProdutoData
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdProduto { get; set; }
-    public string DscProduto { get; set; }
-    public float VlrUnitario { get; set; }
+    public string dscProduto { get; set; }
+    public float vlrUnitario { get; set; }
 }

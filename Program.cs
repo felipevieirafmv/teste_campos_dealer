@@ -19,6 +19,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddHttpClient<IClienteService, ClienteService>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddHttpClient<IProdutoService, ProdutoService>();
 
 var app = builder.Build();
 

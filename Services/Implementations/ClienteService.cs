@@ -32,31 +32,31 @@ public class ClienteService : IClienteService
         _httpClient = httpClient;
     }
 
-    public async Task<IEnumerable<ClienteDTO>> GetAllClientes()
+    public async Task<IEnumerable<ClienteData>> GetAllClientes()
     {
         var clientes = await _context.ClienteData.ToListAsync();
 
-        return _mapper.Map<IEnumerable<ClienteDTO>>(clientes);
+        return clientes;
     }
 
-    public async Task<ClienteDTO> GetClienteByName(string name)
+    public async Task<ClienteData> GetClienteByName(string name)
     {
         var cliente = await _context.ClienteData.FirstOrDefaultAsync(c => c.nmCliente.Contains(name));
 
         if(cliente is null)
             return null;
         
-        return _mapper.Map<ClienteDTO>(cliente);
+        return cliente;
     }
 
-    public async Task<ClienteDTO> GetClienteById(int id)
+    public async Task<ClienteData> GetClienteById(int id)
     {
         var cliente = await _context.ClienteData.FindAsync(id);
 
         if(cliente is null)
             return null;
         
-        return _mapper.Map<ClienteDTO>(cliente);
+        return cliente;
     }
 
     public async Task<ClienteDTO> CreateCliente(ClienteDTO clienteDTO)
