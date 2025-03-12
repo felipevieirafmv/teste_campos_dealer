@@ -68,30 +68,19 @@ public class VendaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProduto(int id, ProdutoDTO produtoDTO)
+    public async Task<IActionResult> UpdateVenda(int id, VendaDTO vendaDTO)
     {
-        var produtoExistente = await _produtoService.GetProdutoById(id);
-        if(produtoExistente is null)
-            return NotFound();
-
-        var produtoData = new ProdutoData
-        {
-            IdProduto = id,
-            dscProduto = produtoDTO.dscProduto,
-            vlrUnitario = produtoDTO.vlrUnitario
-        };
-
-        var resultado = await _produtoService.UpdateProduto(produtoData);
+        var resultado = await _vendaService.UpdateVenda(id, vendaDTO);
         if(!resultado)
-            return BadRequest();
+            return NotFound();
         
         return NoContent();
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteProduto(int id)
+    public async Task<IActionResult> DeleteVenda(int id)
     {
-        var resultado = await _produtoService.DeleteProduto(id);
+        var resultado = await _vendaService.DeleteVenda(id);
         if(!resultado)
             return NotFound();
         
@@ -99,9 +88,9 @@ public class VendaController : ControllerBase
     }
 
     [HttpPost("importar")]
-    public async Task<IActionResult> ImportarProdutos()
+    public async Task<IActionResult> ImportarVendas()
     {
-        var response = await _produtoService.ImportarProdutosExternos();
+        var response = await _vendaService.ImportarVendasExternas();
         if(response)
             return Ok();
         

@@ -21,6 +21,8 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddHttpClient<IClienteService, ClienteService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddHttpClient<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IVendaService, VendaService>();
+builder.Services.AddHttpClient<IVendaService, VendaService>();
 
 var app = builder.Build();
 

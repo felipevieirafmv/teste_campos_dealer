@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
@@ -16,6 +15,8 @@ using System;
 using Model;
 using System.Linq;
 using System.Text.Json;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Services;
 
@@ -49,7 +50,7 @@ public class VendaService : IVendaService
                 .Where(c => c.nmCliente.Contains(nmCliente))
                 .FirstOrDefaultAsync();
 
-            if(cliente is null)
+            if(cliente != null)
                 query = query.Where(v => v.idCliente == cliente.IdCliente);
         }
 
@@ -59,7 +60,7 @@ public class VendaService : IVendaService
                 .Where(p => p.dscProduto.Contains(dscProduto))
                 .FirstOrDefaultAsync();
             
-            if(produto is null)
+            if(produto != null)
                 query = query.Where(v => v.idProduto == produto.IdProduto);
         }
 
@@ -148,11 +149,8 @@ public class VendaService : IVendaService
         {
             string url = "https://camposdealer.dev/Sites/TesteAPI/venda";
             var response = await _httpClient.GetStringAsync(url);
-            response = JsonSerializer.Deserialize<string>(response);
-            System.Console.WriteLine(response);
-            var vendasExternas = JsonSerializer.Deserialize<List<VendaData>>(response);
-
-            System.Console.WriteLine(vendasExternas);
+            response = System.Text.Json.JsonSerializer.Deserialize<string>(response);
+            var vendasExternas = JsonConvert.DeserializeObject<List<VendaData>>(response);
 
             if(vendasExternas is null || !vendasExternas.Any())
                 return false;
