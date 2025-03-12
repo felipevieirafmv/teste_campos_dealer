@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-
-namespace Model;
+using Model;
 
 public class TesteCamposDealerDbContext : DbContext
 {

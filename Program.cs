@@ -12,12 +12,17 @@ builder.Services.AddDbContext<TesteCamposDealerDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 // Configure o pipeline de requisição HTTP
 if (app.Environment.IsDevelopment())
 {
-    // Código de configuração específico para o ambiente de desenvolvimento (ex.: Swagger)
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
