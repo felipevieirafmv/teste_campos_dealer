@@ -10,5 +10,7 @@ public class MapperProfile : Profile
         CreateMap<ClienteDTO, ClienteData>();
         CreateMap<ProdutoData, ProdutoDTO>();
         CreateMap<ProdutoDTO, ProdutoData>();
+        CreateMap<VendaData, VendaDTO>();
+        CreateMap<VendaDTO, VendaData>();
     }
 }
