@@ -1,0 +1,6 @@
+@teste_campos_dealer_HostAddress = http://localhost:5116
+
+GET {{teste_campos_dealer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
