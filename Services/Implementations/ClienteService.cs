@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AutoMapper;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using Model;
+using System.Linq;
+using System.Text.Json;
 
 namespace Services;
 
@@ -16,11 +23,13 @@ public class ClienteService : IClienteService
 {
     private readonly TesteCamposDealerDbContext _context;
     private readonly IMapper _mapper;
+    private readonly HttpClient _httpClient;
 
-    public ClienteService(TesteCamposDealerDbContext context, IMapper mapper)
+    public ClienteService(TesteCamposDealerDbContext context, IMapper mapper, HttpClient httpClient)
     {
         _context = context;
         _mapper = mapper;
+        _httpClient = httpClient;
     }
 
     public async Task<IEnumerable<ClienteDTO>> GetAllClientes()
@@ -32,7 +41,7 @@ public class ClienteService : IClienteService
 
     public async Task<ClienteDTO> GetClienteByName(string name)
     {
-        var cliente = await _context.ClienteData.FirstOrDefaultAsync(c => c.NmCliente.Contains(name));
+        var cliente = await _context.ClienteData.FirstOrDefaultAsync(c => c.nmCliente.Contains(name));
 
         if(cliente is null)
             return null;
@@ -79,5 +88,33 @@ public class ClienteService : IClienteService
         _context.ClienteData.Remove(cliente);
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<bool> ImportarClientesExternos()
+    {
+        try
+        {
+            string url = "https://camposdealer.dev/Sites/TesteAPI/cliente";
+            var response = await _httpClient.GetStringAsync(url);
+            response = JsonSerializer.Deserialize<string>(response);
+            System.Console.WriteLine(response);
+            var clientes = JsonSerializer.Deserialize<List<ClienteData>>(response);
+
+            System.Console.WriteLine(clientes);
+
+            if(clientes != null && clientes.Any())
+            {
+                _context.ClienteData.AddRange(clientes);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine($"Erro: {ex.Message}");
+            return false;
+        }
     }
 }

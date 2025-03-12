@@ -40,11 +40,11 @@ public class ClienteController : ControllerBase
     {
         var clienteData = new ClienteData
         {
-            NmCliente = clienteDTO.NmCliente,
+            nmCliente = clienteDTO.nmCliente,
             Cidade = clienteDTO.Cidade
         };
         var clienteCriado = await _clienteService.CreateCliente(clienteDTO);
-        return CreatedAtAction(nameof(GetClienteByName), new { name = clienteCriado.NmCliente }, clienteCriado);
+        return CreatedAtAction(nameof(GetClienteByName), new { name = clienteCriado.nmCliente }, clienteCriado);
     }
 
     [HttpPut("{id}")]
@@ -57,7 +57,7 @@ public class ClienteController : ControllerBase
         var clienteData = new ClienteData
         {
             IdCliente = id,
-            NmCliente = clienteDTO.NmCliente,
+            nmCliente = clienteDTO.nmCliente,
             Cidade = clienteDTO.Cidade
         };
 
@@ -76,5 +76,15 @@ public class ClienteController : ControllerBase
             return NotFound();
         
         return NoContent();
+    }
+
+    [HttpPost("importar")]
+    public async Task<IActionResult> ImportarClientes()
+    {
+        var response = await _clienteService.ImportarClientesExternos();
+        if(response)
+            return Ok();
+        
+        return BadRequest();
     }
 }

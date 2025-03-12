@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace teste_campos_dealer.Migrations
 {
     [DbContext(typeof(TesteCamposDealerDbContext))]
-    partial class TesteCamposDealerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250312160406_RenomearColunas")]
+    partial class RenomearColunas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,11 +26,11 @@ namespace teste_campos_dealer.Migrations
 
             modelBuilder.Entity("Model.ClienteData", b =>
                 {
-                    b.Property<int>("IdCliente")
+                    b.Property<int>("idCliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idCliente"));
 
                     b.Property<string>("Cidade")
                         .HasColumnType("nvarchar(max)");
@@ -35,57 +38,57 @@ namespace teste_campos_dealer.Migrations
                     b.Property<string>("nmCliente")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdCliente");
+                    b.HasKey("idCliente");
 
                     b.ToTable("ClienteData");
                 });
 
             modelBuilder.Entity("Model.ProdutoData", b =>
                 {
-                    b.Property<int>("IdProduto")
+                    b.Property<int>("idProduto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProduto"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idProduto"));
 
-                    b.Property<string>("DscProduto")
+                    b.Property<string>("dscProduto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("VlrUnitario")
+                    b.Property<float>("vlrUnitario")
                         .HasColumnType("real");
 
-                    b.HasKey("IdProduto");
+                    b.HasKey("idProduto");
 
                     b.ToTable("ProdutoData");
                 });
 
             modelBuilder.Entity("Model.VendaData", b =>
                 {
-                    b.Property<int>("IdVenda")
+                    b.Property<int>("idVenda")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVenda"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idVenda"));
 
-                    b.Property<DateTime>("DthVenda")
+                    b.Property<DateTime>("dthVenda")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdCliente")
+                    b.Property<int>("idCliente")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProduto")
+                    b.Property<int>("idProduto")
                         .HasColumnType("int");
 
-                    b.Property<int>("QtdVenda")
+                    b.Property<int>("qtdVenda")
                         .HasColumnType("int");
 
-                    b.Property<float>("VlrTotalVenda")
+                    b.Property<float>("vlrTotalVenda")
                         .HasColumnType("real");
 
-                    b.Property<float>("VlrUnitarioVenda")
+                    b.Property<float>("vlrUnitarioVenda")
                         .HasColumnType("real");
 
-                    b.HasKey("IdVenda");
+                    b.HasKey("idVenda");
 
                     b.ToTable("VendaData");
                 });

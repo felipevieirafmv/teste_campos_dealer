@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace teste_campos_dealer.Migrations
 {
     [DbContext(typeof(TesteCamposDealerDbContext))]
-    partial class TesteCamposDealerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250312162330_Renomear")]
+    partial class Renomear
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +35,7 @@ namespace teste_campos_dealer.Migrations
                     b.Property<string>("Cidade")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nmCliente")
+                    b.Property<string>("NmCliente")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCliente");

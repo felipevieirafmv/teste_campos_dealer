@@ -13,4 +13,5 @@ public interface IClienteService
     Task<ClienteDTO> CreateCliente(ClienteDTO clienteDTO);
     Task<bool> UpdateCliente(ClienteData clienteData);
     Task<bool> DeleteCliente(int id);
+    Task<bool> ImportarClientesExternos();
 }
