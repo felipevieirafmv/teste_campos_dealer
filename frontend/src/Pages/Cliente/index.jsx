@@ -113,6 +113,7 @@ export default function Cliente(){
                                         setClienteId(cliente.idCliente);
                                         setNome(cliente.nmCliente);
                                         setCidade(cliente.cidade);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
                                     }}
                                 >
                                     Editar

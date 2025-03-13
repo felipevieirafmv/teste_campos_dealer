@@ -113,6 +113,7 @@ export default function Produto(){
                                         setProdutoId(produto.idProduto);
                                         setDscProduto(produto.dscProduto);
                                         setVlrUnitario(produto.vlrUnitario);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
                                     }}
                                 >
                                     Editar
