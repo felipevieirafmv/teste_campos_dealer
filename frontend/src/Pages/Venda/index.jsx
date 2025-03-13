@@ -92,6 +92,7 @@ export default function Venda() {
         try {
             await axios.post(`${API_URL}/importar`);
             fetchVendas();
+            alert("Vendas importadas com sucesso!");
         } catch (error) {
             console.error("Erro ao importar vendas", error);
         }

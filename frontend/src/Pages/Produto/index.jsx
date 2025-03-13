@@ -69,6 +69,7 @@ export default function Produto(){
         try {
             await axios.post(`${API_URL}/importar`);
             fetchProdutos();
+            alert("Produtos importados com sucesso!");
         } catch (error) {
             console.error("Erro ao importar produtos", error);
         }
