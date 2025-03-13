@@ -26,3 +26,7 @@ Após iniciar ambas as partes da aplicação, você poderá:
 
 - **/backend**: Contém o projeto ASP.NET Core com a Web API e a lógica de negócios.
 - **/frontend**: Contém o projeto React.js responsável pela interface do usuário.
+
+## URL's usados no desenvolvimento
+- **Front-end**: http://localhost:5173
+- **Back-end**: http://localhost:5116
