@@ -7,91 +7,91 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import styles from './styles.module.scss';
 
-const API_URL = "http://localhost:5116/cliente";
+const API_URL = "http://localhost:5116/produto";
 
-export default function Cliente(){
-    const [clientes, setClientes] = useState([]);
-    const [nome, setNome] = useState("");
-    const [cidade, setCidade] = useState("");
-    const [clienteId, setClienteId] = useState("");
+export default function Produto(){
+    const [produtos, setProdutos] = useState([]);
+    const [dscProduto, setDscProduto] = useState("");
+    const [vlrUnitario, setVlrUnitario] = useState(0.0);
+    const [produtoId, setProdutoId] = useState("");
 
     useEffect(() => {
-        fetchClientes();
+        fetchProdutos();
     }, []);
     
-    async function fetchClientes() {
+    async function fetchProdutos() {
         try {
             const response = await axios.get(API_URL);
-            setClientes(response.data);
+            setProdutos(response.data);
             console.log(response);
         } catch (error) {
-            console.error("Erro ao buscar clientes", error);
+            console.error("Erro ao buscar produtos", error);
         }
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const cliente = { nmCliente: nome, cidade: cidade };
+        const produto = { dscProduto: dscProduto, vlrUnitario: vlrUnitario };
         try {
-            if(clienteId) {
-                await axios.put(`${API_URL}/${clienteId}`, cliente);
+            if(produtoId) {
+                await axios.put(`${API_URL}/${produtoId}`, produto);
             } else {
-                await axios.post(API_URL, cliente);
+                await axios.post(API_URL, produto);
             }
-            fetchClientes();
-            setNome("");
-            setCidade("");
-            setClienteId("");
+            fetchProdutos();
+            setDscProduto("");
+            setVlrUnitario(0.0);
+            setProdutoId("");
         } catch (error) {
-            console.error("Erro ao salvar cliente", error);
+            console.error("Erro ao salvar produto", error);
         }
     }
 
-    async function deleteCliente(id) {
-        const confirmDelete = window.confirm("Tem certeza que deseja excluir este cliente?");
+    async function deleteProduto(id) {
+        const confirmDelete = window.confirm("Tem certeza que deseja excluir este produto?");
         if(confirmDelete) {
             try {
                 await axios.delete(`${API_URL}/${id}`);
-                fetchClientes();
+                fetchProdutos();
             } catch (error) {
-                console.error("Erro ao deletar cliente", error);
+                console.error("Erro ao deletar produto", error);
             }
         }
     }
 
     function handleClear() {
-        setNome("");
-        setCidade("");
-        setClienteId("");
+        setDscProduto("");
+        setVlrUnitario("");
+        setProdutoId("");
     }
 
     return(
         <>
             <NavBar />
             <div className={styles.container}>
-                <h2>Gerenciamento de Clientes</h2>
+                <h2>Gerenciamento de Produtos</h2>
                 <Card className={styles.card}>
                     <Card.Body>
                         <Form onSubmit={handleSubmit}>
-                            <Form.Label>Nome</Form.Label>
+                            <Form.Label>Descrição</Form.Label>
                             <Form.Control
-                                value={nome}
+                                value={dscProduto}
                                 type="text"
-                                placeholder="Nome"
-                                onChange={(e) => setNome(e.target.value)}
+                                placeholder="Descrição"
+                                onChange={(e) => setDscProduto(e.target.value)}
                             />
 
-                            <Form.Label>Cidade</Form.Label>
+                            <Form.Label>Valor unitário</Form.Label>
                             <Form.Control
-                                value={cidade}
-                                type="text"
-                                placeholder="Cidade"
-                                onChange={(e) => setCidade(e.target.value)}
+                                value={vlrUnitario}
+                                type="number"
+                                placeholder="0.0"
+                                onChange={(e) => setVlrUnitario(e.target.value)}
                             />
 
                             <div className={styles.buttonContainer}>
                                 <Button variant="primary" type="submit">
-                                    {clienteId ? "Atualizar" : "Criar"}
+                                    {produtoId ? "Atualizar" : "Criar"}
                                 </Button>
                                 <Button variant="secondary" type="button" onClick={handleClear}>
                                     Limpar
@@ -101,23 +101,23 @@ export default function Cliente(){
                     </Card.Body>
                 </Card>
 
-                <h3>Lista de Clientes</h3>
+                <h3>Lista de Produtos</h3>
                 <ul>
-                    {clientes.map(cliente => (
-                        <li key={cliente.idCliente}>
-                            {cliente.nmCliente} - {cliente.Cidade}
+                    {produtos.map(produto => (
+                        <li key={produto.idProduto}>
+                            {produto.dscProduto} - {produto.vlrUnitario}
                             <div className={styles.buttonActions}>
                                 <Button
                                     variant="warning"
                                     onClick={() => {
-                                        setClienteId(cliente.idCliente);
-                                        setNome(cliente.nmCliente);
-                                        setCidade(cliente.cidade);
+                                        setProdutoId(produto.idProduto);
+                                        setDscProduto(produto.dscProduto);
+                                        setVlrUnitario(produto.vlrUnitario);
                                     }}
                                 >
                                     Editar
                                 </Button>
-                                <Button variant="danger" onClick={() => deleteCliente(cliente.idCliente)}>
+                                <Button variant="danger" onClick={() => deleteProduto(produto.idProduto)}>
                                     Deletar
                                 </Button>
                             </div>

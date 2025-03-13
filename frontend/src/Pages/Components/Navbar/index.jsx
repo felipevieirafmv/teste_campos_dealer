@@ -10,8 +10,8 @@ export default function NavBar(){
             <Container>
                 <Nav className={styles.nav2}>
                     <Nav.Link href="/">Clientes</Nav.Link>
-                    <Nav.Link href="/products">Produtos</Nav.Link>
-                    <Nav.Link href="/cart">Vendas</Nav.Link>
+                    <Nav.Link href="/produto">Produtos</Nav.Link>
+                    <Nav.Link href="/venda">Vendas</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

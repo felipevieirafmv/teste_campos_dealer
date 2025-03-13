@@ -1,0 +1,56 @@
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+.buttonContainer {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+li span {
+    font-weight: 500;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+li .buttonActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
