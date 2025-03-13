@@ -105,7 +105,7 @@ export default function Cliente(){
                 <ul>
                     {clientes.map(cliente => (
                         <li key={cliente.idCliente}>
-                            {cliente.nmCliente} - {cliente.Cidade}
+                            {cliente.nmCliente} - {cliente.cidade}
                             <div className={styles.buttonActions}>
                                 <Button
                                     variant="warning"
