@@ -65,10 +65,24 @@ export default function Cliente(){
         setClienteId("");
     }
 
+    async function importarClientes() {
+        try {
+            await axios.post(`${API_URL}/importar`);
+            fetchClientes();
+            alert("Clientes importados com sucesso!");
+        } catch (error) {
+            console.error("Erro ao importar clientes", error);
+            alert("Erro ao importar clientes");
+        }
+    }
+
     return(
         <>
             <NavBar />
-            <div className={styles.container}>
+                <div className={styles.container}>
+                <Button variant="success" onClick={importarClientes}>
+                    Importar Clientes
+                </Button>
                 <h2>Gerenciamento de Clientes</h2>
                 <Card className={styles.card}>
                     <Card.Body>

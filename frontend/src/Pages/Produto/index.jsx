@@ -65,10 +65,22 @@ export default function Produto(){
         setProdutoId("");
     }
 
+    async function importarProdutos() {
+        try {
+            await axios.post(`${API_URL}/importar`);
+            fetchProdutos();
+        } catch (error) {
+            console.error("Erro ao importar produtos", error);
+        }
+    }
+
     return(
         <>
             <NavBar />
             <div className={styles.container}>
+                <Button variant="success" onClick={importarProdutos}>
+                    Importar Produtos
+                </Button>
                 <h2>Gerenciamento de Produtos</h2>
                 <Card className={styles.card}>
                     <Card.Body>

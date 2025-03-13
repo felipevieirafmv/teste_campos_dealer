@@ -88,12 +88,23 @@ export default function Venda() {
         setDscProdutoBusca("");
     }
 
+    async function importarVendas() {
+        try {
+            await axios.post(`${API_URL}/importar`);
+            fetchVendas();
+        } catch (error) {
+            console.error("Erro ao importar vendas", error);
+        }
+    }
+
     return (
         <>
             <NavBar />
             <div className={styles.container}>
+                <Button variant="success" onClick={importarVendas}>
+                    Importar Vendas
+                </Button>
                 <h2>Gerenciamento de Vendas</h2>
-                
                 <Card className={styles.card}>
                     <Card.Body>
                         <Form onSubmit={handleSubmit}>
